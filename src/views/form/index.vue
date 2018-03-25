@@ -1,6 +1,17 @@
 <template>
   <div class="app-container">
+    <el-dialog :visible="true">
+      <el-form ref="form" :model="form" label-width="120px" content-width="280px">
+        <el-form-item label="name" style="width: 428px;">
+          <area-select v-model="form.area" level="street"></area-select>
+        </el-form-item>
+        <el-input v-model="form.area"></el-input>
+      </el-form>
+    </el-dialog>
     <el-form ref="form" :model="form" label-width="120px">
+      <el-form-item label="name">
+        <area-select v-model="form.area"></area-select>
+      </el-form-item>
       <el-form-item label="Activity name">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
@@ -48,10 +59,13 @@
 </template>
 
 <script>
+import AreaSelect from './area-select.vue'
 export default {
+  components: { AreaSelect },
   data() {
     return {
       form: {
+        area: 'tt/ttt/ttt/ttt',
         name: '',
         region: '',
         date1: '',
@@ -82,4 +96,3 @@ export default {
   text-align: center;
 }
 </style>
-
