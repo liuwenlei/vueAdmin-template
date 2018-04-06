@@ -15,7 +15,15 @@ import store from './store'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import request from '@/utils/request'
+
 Vue.use(ElementUI, { locale })
+
+Vue.prototype.$fetch = request
+Vue.prototype.$post = request.post
+Vue.prototype.$get = request.get
+Vue.prototype.$delete = request.delete
+Vue.prototype.$put = request.put
 
 Vue.config.productionTip = false
 

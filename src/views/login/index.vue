@@ -71,19 +71,22 @@ export default {
         this.pwdType = 'password'
       }
     },
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+    async handleLogin() {
+      this.$refs.loginForm.validate(async valid => {
         if (valid) {
-          this.loading = true
-          this.$store.dispatch('Login', this.loginForm).then(() => {
+          try {
+            this.loading = true
+            const res = await this.$post('/user/login', this.loginForm)
+            this.$store.commit('SET_TOKEN', res.data.token)
+            console.log(this.$store.state.user.token)
             this.loading = false
             this.$router.push({ path: '/' })
-          }).catch(() => {
+          } catch (e) {
             this.loading = false
-          })
+            console.log(e)
+          }
         } else {
-          console.log('error submit!!')
-          return false
+          console.log('error submit!')
         }
       })
     }

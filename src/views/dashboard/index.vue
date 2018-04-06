@@ -15,6 +15,23 @@ export default {
       'name',
       'roles'
     ])
+  },
+  created() {
+    this.getName()
+  },
+  methods: {
+    async getName() {
+      let temp = 0
+      await new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('eeeeeeee')
+          resolve(30)
+        }, 2000)
+      }).then(res => {
+        temp = res
+      })
+      console.log(temp)
+    }
   }
 }
 </script>
