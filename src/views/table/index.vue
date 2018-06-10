@@ -1,5 +1,24 @@
 <template>
   <div class="app-container">
+    <thermometer></thermometer>
+    <vue-openseadragon :id="'image-viewer'"
+      :options="{
+        tileSources: {
+          type: 'image',
+          url: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80'
+        },
+        maxZoomLevel: 5,
+        ajaxWithCredentials: true,
+        showNavigator: true,
+        homeFillsViewer: true,
+        navigatorId: 'image-navigator',
+        toolbar: 'image-toolbar',
+        zoomInButton: 'image-toolbar-zoomin',
+        zoomOutButton: 'image-toolbar-zoomout',
+        homeButton: 'image-toolbar-reset',
+        fullPageButton: 'image-toolbar-fullscreen'
+      }">
+    </vue-openseadragon>
     <el-table :data="list" v-loading.body="listLoading" element-loading-text="Loading" border fit highlight-current-row>
       <el-table-column align="center" label='ID' width="95">
         <template slot-scope="scope">
@@ -38,8 +57,10 @@
 
 <script>
 import { getList } from '@/api/table'
+import thermometer from '@/components/Thermometer'
 
 export default {
+  components: { thermometer },
   data() {
     return {
       list: null,

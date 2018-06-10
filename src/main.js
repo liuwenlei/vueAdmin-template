@@ -16,6 +16,7 @@ import '@/icons' // icon
 import '@/permission' // permission control
 
 import request from '@/utils/request'
+import '@/components/imgPreview'
 
 Vue.use(ElementUI, { locale })
 
